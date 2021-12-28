@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:marvel_heroes_app/src/shared/colors.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key, required this.title}) : super(key: key);
@@ -10,39 +12,50 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+        backgroundColor: MarvelColors.white,
+        centerTitle: true,
+        title: SvgPicture.asset(
+          'assets/icons/marvel.svg',
+          color: MarvelColors.red,
         ),
+        leading: InkWell(
+          customBorder: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(100),
+          ),
+          onTap: () {
+            print("MENU");
+          },
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: SvgPicture.asset(
+              'assets/icons/menu.svg',
+              color: MarvelColors.dark,
+            ),
+          ),
+        ),
+        actions: [
+          InkWell(
+            customBorder: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(100),
+            ),
+            onTap: () {
+              print("SEARCH");
+            },
+            child: Container(
+              margin: const EdgeInsets.symmetric(horizontal: 15),
+              child: SvgPicture.asset(
+                'assets/icons/search.svg',
+                color: MarvelColors.dark,
+              ),
+            ),
+          ),
+        ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
+      body: Container(),
     );
   }
 }

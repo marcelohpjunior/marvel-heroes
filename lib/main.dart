@@ -14,6 +14,7 @@ class MarvelHeroesApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      debugShowCheckedModeBanner: false,
       home: const Home(title: 'Marvel Heroes'),
     );
   }
