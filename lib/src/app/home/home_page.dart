@@ -16,6 +16,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         backgroundColor: MarvelColors.white,
         centerTitle: true,
         title: SvgPicture.asset(
@@ -55,7 +56,9 @@ class _HomeState extends State<Home> {
           ),
         ],
       ),
-      body: Container(),
+      body: Container(
+        color: MarvelColors.grey,
+      ),
     );
   }
 }
