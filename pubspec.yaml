@@ -28,3 +28,11 @@ flutter:
     - assets/movies/
     - assets/chars/
     - assets/icons/
+  fonts:
+    - family: Gilroy
+      fonts:
+        - asset: assets/fonts/gilroy-bold.ttf
+        - asset: assets/fonts/gilroy-heavy.ttf
+        - asset: assets/fonts/gilroy-medium.ttf
+        - asset: assets/fonts/gilroy-regular.ttf
+        - asset: assets/fonts/gilroy-semibold.ttf
