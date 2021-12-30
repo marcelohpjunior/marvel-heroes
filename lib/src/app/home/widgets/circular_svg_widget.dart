@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:marvel_heroes_app/src/shared/colors.dart';
 
 class CircularSvg extends StatelessWidget {
-  String pathSvg;
-  double height;
-  double width;
-  Color? colorSvg;
-  Color? backgroundColor;
-  Gradient? backgroundGradient;
-  void Function()? onTap;
+  final String pathSvg;
+  final double height;
+  final double width;
+  final Color? colorSvg;
+  final Color? backgroundColor;
+  final Gradient? backgroundGradient;
+  final void Function()? onTap;
 
-  CircularSvg(
+  const CircularSvg(
       {Key? key,
       required this.pathSvg,
       required this.height,

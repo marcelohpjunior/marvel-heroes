@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:marvel_heroes_app/src/app/home/widgets/character_list_widget.dart';
 import 'package:marvel_heroes_app/src/app/home/widgets/circular_svg_widget.dart';
+import 'package:marvel_heroes_app/src/app/home/widgets/filter_widget.dart';
+import 'package:marvel_heroes_app/src/app/home/widgets/character_card_widget.dart';
 import 'package:marvel_heroes_app/src/shared/colors.dart';
 
 class Home extends StatefulWidget {
@@ -17,6 +21,11 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        systemOverlayStyle: const SystemUiOverlayStyle(
+          statusBarColor: MarvelColors.white,
+          statusBarIconBrightness: Brightness.dark,
+          statusBarBrightness: Brightness.light,
+        ),
         elevation: 0,
         backgroundColor: MarvelColors.white,
         centerTitle: true,
@@ -57,179 +66,47 @@ class _HomeState extends State<Home> {
           ),
         ],
       ),
-      body: Container(
-        color: MarvelColors.white,
-        padding: const EdgeInsets.only(left: 10, right: 10, top: 50),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              "Bem vindo ao Marvel Heroes",
-              style: TextStyle(
-                fontFamily: 'Gilroy',
-                color: MarvelColors.grey,
-                fontWeight: FontWeight.w500,
-                fontSize: 14,
-              ),
-            ),
-            const Text(
-              "Escolha o seu \npersonagem",
-              style: TextStyle(
-                fontFamily: 'Gilroy',
-                color: MarvelColors.dark,
-                fontWeight: FontWeight.bold,
-                fontSize: 32,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  CircularSvg(
-                    pathSvg: 'assets/icons/hero.svg',
-                    height: 50,
-                    width: 50,
-                    backgroundGradient: MarvelColors.gradientBlue,
-                    onTap: () => print("HERO"),
-                  ),
-                  CircularSvg(
-                    pathSvg: 'assets/icons/villain.svg',
-                    height: 50,
-                    width: 50,
-                    backgroundGradient: MarvelColors.gradientRed,
-                    onTap: () => print("VILLAIN"),
-                  ),
-                  CircularSvg(
-                    pathSvg: 'assets/icons/antihero.svg',
-                    height: 50,
-                    width: 50,
-                    backgroundGradient: MarvelColors.gradientPurple,
-                    onTap: () => print("ANTIHERO"),
-                  ),
-                  CircularSvg(
-                    pathSvg: 'assets/icons/alien.svg',
-                    height: 50,
-                    width: 50,
-                    backgroundGradient: MarvelColors.gradientGreen,
-                    onTap: () => print("ALIEN"),
-                  ),
-                  CircularSvg(
-                    pathSvg: 'assets/icons/human.svg',
-                    height: 50,
-                    width: 50,
-                    backgroundGradient: MarvelColors.gradientPink,
-                    onTap: () => print("HUMAN"),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 50),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Text(
-                        "Heróis",
-                        style: TextStyle(
-                          fontFamily: 'Gilroy',
-                          color: MarvelColors.red,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                        ),
+      body: SingleChildScrollView(
+        child: Container(
+          color: MarvelColors.white,
+          padding: const EdgeInsets.only(top: 50, bottom: 50),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text(
+                      "Bem vindo ao Marvel Heroes",
+                      style: TextStyle(
+                        fontFamily: 'Gilroy',
+                        color: MarvelColors.grey,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 14,
                       ),
-                      Text(
-                        "Ver tudo",
-                        style: TextStyle(
-                          fontFamily: 'Gilroy',
-                          color: MarvelColors.grey,
-                          fontWeight: FontWeight.normal,
-                          fontSize: 14,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Container(
-                    height: 240,
-                    child: ListView(
-                      shrinkWrap: true,
-                      padding: const EdgeInsets.only(top: 10),
-                      scrollDirection: Axis.horizontal,
-                      children: [
-                        Stack(
-                          alignment: AlignmentDirectional.bottomStart,
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(20),
-                              child: Image.asset(
-                                'assets/chars/spider-man.png',
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                            Container(
-                              margin: const EdgeInsets.only(
-                                  right: 15, left: 5, bottom: 5),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const Text(
-                                    "Peter Parker",
-                                    style: TextStyle(
-                                      fontFamily: 'Gilroy',
-                                      color: MarvelColors.white,
-                                      fontSize: 10,
-                                    ),
-                                  ),
-                                  RichText(
-                                    text: const TextSpan(
-                                      text: "Homem ",
-                                      style: TextStyle(
-                                        fontFamily: 'Gilroy',
-                                        color: MarvelColors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 20,
-                                      ),
-                                      children: [
-                                        TextSpan(
-                                          text: 'Aranha',
-                                          style: TextStyle(
-                                            fontFamily: 'Gilroy',
-                                            color: MarvelColors.white,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 20,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  // RichText(
-                                  //   text: TextSpan(text: "Homem", children: [
-                                  //     TextSpan(
-                                  //       "Homem Aranha",
-                                  //       style: TextStyle(
-                                  //         fontFamily: 'Gilroy',
-                                  //         color: MarvelColors.white,
-                                  //         fontWeight: FontWeight.bold,
-                                  //         fontSize: 20,
-                                  //       ),
-                                  //     ),
-                                  //   ]),
-                                  // ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
                     ),
-                  ),
-                ],
+                    Text(
+                      "Escolha o seu \npersonagem",
+                      style: TextStyle(
+                        fontFamily: 'Gilroy',
+                        color: MarvelColors.dark,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 32,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            )
-          ],
+              const Filter(),
+              const CharecterList(),
+              const CharecterList(),
+              const CharecterList(),
+              const CharecterList(),
+              const CharecterList(),
+            ],
+          ),
         ),
       ),
     );
