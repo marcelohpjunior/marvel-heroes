@@ -11,13 +11,13 @@ class Character {
   List<String>? movies;
 
   Character(
-      {name,
-      alterEgo,
-      imagePath,
-      biography,
-      caracteristics,
-      abilities,
-      movies});
+      {this.name,
+      this.alterEgo,
+      this.imagePath,
+      this.biography,
+      this.caracteristics,
+      this.abilities,
+      this.movies});
 
   Character.fromJson(Map<String, dynamic> json) {
     name = json['name'];

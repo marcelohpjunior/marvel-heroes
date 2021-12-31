@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:marvel_heroes_app/src/app/home/home_controller.dart';
 import 'package:marvel_heroes_app/src/app/home/widgets/character_list_widget.dart';
-import 'package:marvel_heroes_app/src/app/home/widgets/circular_svg_widget.dart';
 import 'package:marvel_heroes_app/src/app/home/widgets/filter_widget.dart';
-import 'package:marvel_heroes_app/src/app/home/widgets/character_card_widget.dart';
 import 'package:marvel_heroes_app/src/shared/colors.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key, required this.title}) : super(key: key);
@@ -20,6 +20,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: MarvelColors.white,
       appBar: AppBar(
         systemOverlayStyle: const SystemUiOverlayStyle(
           statusBarColor: MarvelColors.white,
@@ -100,11 +101,32 @@ class _HomeState extends State<Home> {
                 ),
               ),
               const Filter(),
-              const CharecterList(),
-              const CharecterList(),
-              const CharecterList(),
-              const CharecterList(),
-              const CharecterList(),
+              Consumer<HomeController>(builder: (context, controller, _) {
+                controller.getAllCharacters();
+                if (controller.characters == null) {
+                  return Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.only(top: 50),
+                        child: const CircularProgressIndicator(
+                          valueColor:
+                              AlwaysStoppedAnimation<Color>(MarvelColors.red),
+                        ),
+                      ),
+                    ],
+                  );
+                }
+                return Column(
+                    children: controller.characters!.entries.map((entry) {
+                  return CharecterList(
+                    titleList: controller.buildTitleList(entry.key),
+                    characters: entry.value,
+                    onTap: (index) => print(entry.value[index].name),
+                  );
+                }).toList());
+              }),
             ],
           ),
         ),

@@ -4,7 +4,18 @@ import 'package:marvel_heroes_app/src/shared/colors.dart';
 import 'character_card_widget.dart';
 
 class CharecterList extends StatelessWidget {
-  const CharecterList({Key? key}) : super(key: key);
+  final String titleList;
+  final dynamic characters;
+  final void Function(int index)? onTap;
+  final void Function()? onTapSeeMore;
+
+  const CharecterList(
+      {Key? key,
+      required this.titleList,
+      required this.characters,
+      this.onTap,
+      this.onTapSeeMore})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +29,9 @@ class CharecterList extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Text(
-                  "Heróis",
-                  style: TextStyle(
+                Text(
+                  titleList,
+                  style: const TextStyle(
                     fontFamily: 'Gilroy',
                     color: MarvelColors.red,
                     fontWeight: FontWeight.bold,
@@ -28,7 +39,7 @@ class CharecterList extends StatelessWidget {
                   ),
                 ),
                 InkWell(
-                  onTap: () => print("Ver Tudo"),
+                  onTap: onTapSeeMore,
                   child: SizedBox(
                     height: 30,
                     child: Row(
@@ -53,32 +64,21 @@ class CharecterList extends StatelessWidget {
         ),
         SizedBox(
           height: 240,
-          child: ListView(
+          child: ListView.builder(
             shrinkWrap: true,
             scrollDirection: Axis.horizontal,
-            children: [
-              CharecterCard(
-                heroName: "Homem Aranha",
-                realName: "Peter Parker",
-                scrImage: 'assets/chars/spider-man.png',
+            itemCount: characters.length,
+            itemBuilder: (context, index) {
+              return CharecterCard(
+                heroName: characters[index].name ?? '',
+                realName: characters[index].alterEgo ?? '',
+                scrImage: characters[index].imagePath ?? '',
                 margin: const EdgeInsets.symmetric(horizontal: 5),
-                onTap: () => print("Homem Aranha"),
-              ),
-              CharecterCard(
-                heroName: "Pantera Negra",
-                realName: "T'Challa",
-                scrImage: 'assets/chars/black-panther.png',
-                margin: const EdgeInsets.symmetric(horizontal: 5),
-                onTap: () => print("Pantera"),
-              ),
-              CharecterCard(
-                heroName: "Homem de Ferro",
-                realName: "Tony Stark",
-                scrImage: 'assets/chars/iron-man.png',
-                margin: const EdgeInsets.symmetric(horizontal: 5),
-                onTap: () => print("Homem de Ferro"),
-              ),
-            ],
+                onTap: () {
+                  onTap!(index);
+                },
+              );
+            },
           ),
         ),
       ],

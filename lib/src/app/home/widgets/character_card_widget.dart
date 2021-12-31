@@ -44,7 +44,7 @@ class CharecterCard extends StatelessWidget {
                     Colors.black,
                   ],
                   stops: [
-                    0.5,
+                    0.3,
                     1,
                   ],
                 ),
@@ -54,7 +54,7 @@ class CharecterCard extends StatelessWidget {
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(right: 15, left: 10, bottom: 10),
+            margin: const EdgeInsets.only(left: 10, bottom: 10),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -69,7 +69,7 @@ class CharecterCard extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  width: 80,
+                  width: 90,
                   child: Text(
                     heroName,
                     style: const TextStyle(
