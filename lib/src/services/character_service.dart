@@ -8,6 +8,7 @@ import 'package:flutter/services.dart' show rootBundle;
 class CharacterService implements ICharacterService {
   final String _pathJson = 'assets/application.json';
 
+  @override
   Future<Map<String, dynamic>> getAllCharacters() async {
     List characters = [];
     Map<String, dynamic> result = <String, dynamic>{};
