@@ -31,47 +31,48 @@ class CharecterCard extends StatelessWidget {
               fit: BoxFit.fill,
             ),
           ),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              gradient: const LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Colors.transparent,
+                  Colors.black,
+                ],
+                stops: [
+                  0.3,
+                  1,
+                ],
+              ),
+            ),
+            height: 240,
+            width: 147,
+          ),
           InkWell(
             onTap: onTap,
             child: Container(
+              width: 147,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                gradient: const LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Colors.transparent,
-                    Colors.black,
-                  ],
-                  stops: [
-                    0.3,
-                    1,
-                  ],
-                ),
               ),
-              height: 240,
-              width: 147,
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.only(left: 10, bottom: 10),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  realName,
-                  style: const TextStyle(
-                    fontFamily: 'Gilroy',
-                    color: MarvelColors.white,
-                    fontWeight: FontWeight.normal,
-                    fontSize: 10,
+              padding: const EdgeInsets.only(left: 10, bottom: 10),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    realName,
+                    style: const TextStyle(
+                      fontFamily: 'Gilroy',
+                      color: MarvelColors.white,
+                      fontWeight: FontWeight.normal,
+                      fontSize: 10,
+                    ),
                   ),
-                ),
-                SizedBox(
-                  width: 90,
-                  child: Text(
-                    heroName,
+                  Text(
+                    heroName.replaceFirst(' ', '\n'),
                     style: const TextStyle(
                       fontFamily: 'Gilroy',
                       color: MarvelColors.white,
@@ -79,8 +80,8 @@ class CharecterCard extends StatelessWidget {
                       fontSize: 18,
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ],

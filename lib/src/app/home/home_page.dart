@@ -123,6 +123,7 @@ class _HomeState extends State<Home> {
                   return CharecterList(
                     titleList: controller.buildTitleList(entry.key),
                     characters: entry.value,
+                    onTapSeeMore: () => print("Ver mais"),
                     onTap: (index) => print(entry.value[index].name),
                   );
                 }).toList());
