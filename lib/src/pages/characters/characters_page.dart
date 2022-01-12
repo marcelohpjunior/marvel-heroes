@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/src/provider.dart';
-
+import 'package:marvel_heroes_app/src/pages/characters/widgets/character_appbar.dart';
+import 'package:marvel_heroes_app/src/pages/characters/widgets/character_list_widget.dart';
 import 'package:marvel_heroes_app/src/pages/characters/widgets/filter_widget.dart';
-import 'package:marvel_heroes_app/src/pages/home/widgets/character_appbar.dart';
-import 'package:marvel_heroes_app/src/pages/home/widgets/character_list_widget.dart';
 import 'package:marvel_heroes_app/src/shared/colors.dart';
 import 'package:marvel_heroes_app/src/states/character_state.dart';
 import 'package:marvel_heroes_app/src/stores/character_store.dart';
@@ -21,8 +20,9 @@ class _CharactersPageState extends State<CharactersPage> {
   @override
   void initState() {
     super.initState();
-
-    context.read<CharacterStore>().getAllCharacters();
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      context.read<CharacterStore>().getAllCharacters();
+    });
   }
 
   @override
