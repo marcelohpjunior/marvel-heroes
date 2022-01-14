@@ -3,13 +3,13 @@ import 'package:marvel_heroes_app/src/shared/colors.dart';
 
 import 'character_card_widget.dart';
 
-class CharecterList extends StatelessWidget {
+class CharacterList extends StatelessWidget {
   final String titleList;
   final dynamic characters;
   final void Function(int index)? onTap;
   final void Function()? onTapSeeMore;
 
-  const CharecterList(
+  const CharacterList(
       {Key? key,
       required this.titleList,
       required this.characters,
@@ -69,7 +69,7 @@ class CharecterList extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             itemCount: characters.length,
             itemBuilder: (context, index) {
-              return CharecterCard(
+              return CharacterCard(
                 heroName: characters[index].name ?? '',
                 realName: characters[index].alterEgo ?? '',
                 scrImage: characters[index].imagePath ?? '',

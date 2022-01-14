@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:marvel_heroes_app/src/shared/colors.dart';
 
-class CharecterCard extends StatelessWidget {
+class CharacterCard extends StatelessWidget {
   final EdgeInsetsGeometry? margin;
   final String scrImage;
   final String realName;
   final String heroName;
   final void Function()? onTap;
 
-  const CharecterCard({
+  const CharacterCard({
     Key? key,
     required this.scrImage,
     required this.realName,

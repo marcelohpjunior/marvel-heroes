@@ -6,6 +6,7 @@ class MarvelColors {
   static const grey = Color.fromRGBO(183, 183, 200, 1);
   static const silver = Color.fromRGBO(248, 248, 248, 1);
   static const white = Colors.white;
+  static const black = Colors.black;
 
   static const gradientBlue = LinearGradient(
     begin: Alignment.topCenter,

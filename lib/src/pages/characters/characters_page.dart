@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:marvel_heroes_app/src/models/character_model.dart';
+import 'package:marvel_heroes_app/src/pages/character_detail/character_detail_page.dart';
 import 'package:provider/src/provider.dart';
 import 'package:marvel_heroes_app/src/pages/characters/widgets/character_appbar.dart';
 import 'package:marvel_heroes_app/src/pages/characters/widgets/character_list_widget.dart';
@@ -108,11 +110,22 @@ class _CharactersPageState extends State<CharactersPage> {
                     if (value is SuccessCharacterState) {
                       return Column(
                           children: value.characters!.entries.map((entry) {
-                        return CharecterList(
+                        return CharacterList(
                           titleList: controller.buildTitleList(entry.key),
                           characters: entry.value,
                           onTapSeeMore: () => print("Ver mais"),
-                          onTap: (index) => print(entry.value[index].name),
+                          onTap: (index) {
+                            var character = entry.value[index] as Character;
+                            print(entry.value[index].name);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => CharacterDetail(
+                                  character: character,
+                                ),
+                              ),
+                            );
+                          },
                         );
                       }).toList());
                     }
