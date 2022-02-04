@@ -7,6 +7,8 @@ class Caracteristic {
   Height? height;
   String? universe;
 
+  get age => DateTime.now().year - int.parse(birth!);
+
   Caracteristic({birth, weight, height, universe});
 
   Caracteristic.fromJson(Map<String, dynamic> json) {

@@ -2,6 +2,8 @@ class Height {
   double? value;
   String? unity;
 
+  get heightWithUnity => '$value $unity';
+
   Height({value, unity});
 
   Height.fromJson(Map<String, dynamic> json) {

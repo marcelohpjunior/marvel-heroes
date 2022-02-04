@@ -2,6 +2,8 @@ class Weight {
   int? value;
   String? unity;
 
+  get weightWithUnity => '$value $unity';
+
   Weight({value, unity});
 
   Weight.fromJson(Map<String, dynamic> json) {
