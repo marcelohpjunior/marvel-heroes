@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:marvel_heroes_app/src/shared/colors.dart';
 
 class CharacterCard extends StatelessWidget {
+  final double height;
+  final double width;
   final EdgeInsetsGeometry? margin;
   final String scrImage;
   final String realName;
@@ -13,6 +15,8 @@ class CharacterCard extends StatelessWidget {
     required this.scrImage,
     required this.realName,
     required this.heroName,
+    this.height = 240,
+    this.width = 147,
     this.onTap,
     this.margin,
   }) : super(key: key);
@@ -47,13 +51,13 @@ class CharacterCard extends StatelessWidget {
                 ],
               ),
             ),
-            height: 240,
-            width: 147,
+            height: height,
+            width: width,
           ),
           InkWell(
             onTap: onTap,
             child: Container(
-              width: 147,
+              width: width,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
               ),

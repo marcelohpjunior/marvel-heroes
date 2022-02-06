@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:marvel_heroes_app/src/models/character_model.dart';
+import 'package:marvel_heroes_app/src/pages/character_detail/widgets/character_ability_list_widget.dart';
+import 'package:marvel_heroes_app/src/pages/character_detail/widgets/character_biography_widget.dart';
 import 'package:marvel_heroes_app/src/pages/character_detail/widgets/character_caracteristics_widget.dart';
+import 'package:marvel_heroes_app/src/pages/character_detail/widgets/character_movie_card_widget.dart';
+import 'package:marvel_heroes_app/src/pages/character_detail/widgets/character_movie_list_widget.dart';
 import 'package:marvel_heroes_app/src/shared/colors.dart';
 
 class CharacterDetail extends StatefulWidget {
@@ -34,7 +38,6 @@ class _CharacterDetailState extends State<CharacterDetail> {
               Stack(
                 children: [
                   Container(
-                    color: Colors.black,
                     height: MediaQuery.of(context).size.height,
                     width: MediaQuery.of(context).size.width,
                     child: Image.asset(
@@ -56,20 +59,18 @@ class _CharacterDetailState extends State<CharacterDetail> {
                             Colors.black,
                           ],
                           stops: [
-                            0.1,
-                            0.9
+                            0.4,
+                            0.8
                           ]),
                     ),
                   ),
-                  Container(
-                    // color: Colors.blue,
+                  SizedBox(
                     height: MediaQuery.of(context).size.height,
                     width: MediaQuery.of(context).size.width,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Container(
-                          // color: Colors.green,
+                        SizedBox(
                           height: MediaQuery.of(context).size.height * 0.8,
                           width: MediaQuery.of(context).size.width,
                           child: Padding(
@@ -116,19 +117,39 @@ class _CharacterDetailState extends State<CharacterDetail> {
                 ],
               ),
               Container(
-                padding: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
-                color: MarvelColors.black,
+                margin: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(bottom: 50),
-                      child: Text(
-                        widget.character.biography!,
-                        style: const TextStyle(
-                          fontFamily: 'Gilroy-Medium',
-                          color: MarvelColors.white,
-                          fontSize: 14,
-                        ),
+                      padding: const EdgeInsets.only(bottom: 40),
+                      child: CharacterBiography(
+                          biography: widget.character.biography!),
+                    ),
+                    const Text(
+                      'Habilidades',
+                      style: TextStyle(
+                        fontFamily: 'Gilroy',
+                        color: MarvelColors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    CharacterListAbility(
+                        abilities: widget.character.abilities!),
+                    const Text(
+                      'Filmes',
+                      style: TextStyle(
+                        fontFamily: 'Gilroy',
+                        color: MarvelColors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20, bottom: 20),
+                      child: CharacterMovieList(
+                        movies: widget.character.movies!,
                       ),
                     ),
                   ],
