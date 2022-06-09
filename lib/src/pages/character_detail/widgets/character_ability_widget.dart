@@ -15,6 +15,12 @@ class CharacterAbility extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    int listLenght = (MediaQuery.of(context).size.width * 0.7 / 5).floor();
+    print((abilityValue / 100 * listLenght).round().toString() +
+        '=>' +
+        listLenght.toString() +
+        '     ' +
+        abilityValue.toString());
     return Padding(
       padding: padding ?? const EdgeInsets.only(bottom: 20),
       child: Row(
@@ -32,32 +38,35 @@ class CharacterAbility extends StatelessWidget {
             width: MediaQuery.of(context).size.width * 0.7,
             child: Wrap(
               runAlignment: WrapAlignment.end,
+              crossAxisAlignment: WrapCrossAlignment.center,
               runSpacing: 5,
-              children: List<Widget>.generate(
-                100,
-                (index) => Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 1),
+              children: List<Widget>.generate(listLenght, (index) {
+                if (index < (abilityValue / 100 * listLenght).round()) {
+                  return Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 1.5),
+                    color: MarvelColors.white,
+                    width: 2,
+                    height: 10,
+                  );
+                }
+                if (index > (abilityValue / 100 * listLenght).round()) {
+                  return Opacity(
+                    opacity: 0.25,
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 1.5),
+                      color: MarvelColors.white,
+                      width: 2,
+                      height: 10,
+                    ),
+                  );
+                }
+                return Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 1.5),
                   color: MarvelColors.white,
                   width: 2,
-                  height: 10,
-                ),
-              ),
-              // children: [
-              //   ListView.builder(
-              //     scrollDirection: Axis.horizontal,
-              //     primary: false,
-              //     shrinkWrap: true,
-              //     physics: const NeverScrollableScrollPhysics(),
-              //     itemCount: 50,
-              //     itemBuilder: (BuildContext context, int index) {
-              //       return Container(
-              //         margin: const EdgeInsets.symmetric(horizontal: 1),
-              //         color: MarvelColors.white,
-              //         width: 2,
-              //       );
-              //     },
-              //   ),
-              // ],
+                  height: 15,
+                );
+              }),
             ),
           ),
         ],
